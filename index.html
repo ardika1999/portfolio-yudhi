@@ -7,36 +7,139 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    
+    <nav>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#project">Project</a></li>
+    </ul>
 
-    <header>
+    <button id="darkModeToggle">🌙 Dark Mode</button>
+    </nav>
+
+    <header id="home">
         <img src="profile.jpg"  alt="Foto Yudhi" class="profile">
         <h1>Yudhi Ardika</h1>
         <p>Calon Web Developer</p>
     </header>
 
-    <section>
+    <section id="about" class="fade-in">
         <h2>Tentang Saya</h2>
         <p>
             Saya sedang belajar membuat website dan membangun portofolio pribadi.
             Saya tertarik pada dunia teknologi dan pengembangan web.
         </p>
 
-        <a href="https://wa.me/628131041623" class="btn" target="_blank">
+        <a href="https://wa.me/6281310741623" class="btn" target="_blank">
     Hubungi Saya
-</a>
+    </a>
     </section>
 
-    <section>
-        <h2>Project</h2>
-        <ul>
-            <li>Website Portofolio Pribadi</li>
-            <li>Coming Soon...</li>
-        </ul>
+    <section id="project" class="fade-in">
+    <h2>Projects</h2>
+
+    <div class="project-container">
+
+        <div class="project-card">
+            <h3>Portfolio Website</h3>
+            <p>Website pribadi yang dibuat menggunakan HTML, CSS, dan JavaScript.</p>
+            <a href="#" class="btn">Lihat Project</a>
+        </div>
+
+        <div class="project-card">
+            <h3>Coming Soon</h3>
+            <p>Project berikutnya sedang dalam pengembangan.</p>
+            <a href="#" class="btn">Coming Soon</a>
+        </div>
+
+    </div>
     </section>
+
+    <section id="skills" class="fade-in">
+    <h2>Skills</h2>
+
+    <div class="skill">
+        <p>HTML</p>
+        <div class="progress">
+            <div class="progress-bar html"></div>
+        </div>
+    </div>
+
+    <div class="skill">
+        <p>CSS</p>
+        <div class="progress">
+            <div class="progress-bar css"></div>
+        </div>
+    </div>
+
+    <div class="skill">
+        <p>JavaScript</p>
+        <div class="progress">
+            <div class="progress-bar js"></div>
+        </div>
+    </div>
+    </section>
+
 
     <footer>
         <p>© 2026 Yudhi Ardika</p>
     </footer>
+
+    <script>
+    const toggle = document.getElementById("darkModeToggle");
+
+    toggle.addEventListener("click", function() {
+        document.body.classList.toggle("dark-mode");
+    });
+
+    // Skill Animation
+    const skillsSection = document.getElementById("skills");
+    const progressBars = document.querySelectorAll(".progress-bar");
+
+    function showProgress() {
+        const sectionPos = skillsSection.getBoundingClientRect().top;
+        const screenPos = window.innerHeight;
+
+        if (sectionPos < screenPos) {
+            progressBars[0].style.width = "80%";
+            progressBars[1].style.width = "70%";
+            progressBars[2].style.width = "50%";
+        }
+    }
+
+    window.addEventListener("scroll", showProgress);
+
+
+    const fadeElements = document.querySelectorAll(".fade-in");
+
+    function checkFade() {
+        const triggerBottom = window.innerHeight * 0.8;
+
+        fadeElements.forEach(el => {
+            const elementTop = el.getBoundingClientRect().top;
+
+            if (elementTop < triggerBottom) {
+                el.classList.add("show");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", checkFade);
+    checkFade();
+
+    const navbar = document.querySelector("nav");
+
+    window.addEventListener("scroll", function () {
+    if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+    });
+
+
+    </script>
 
 </body>
 </html>
